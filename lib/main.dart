@@ -11,18 +11,19 @@ class Myapp extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-     return const MaterialApp(
+     return  MaterialApp(
        debugShowCheckedModeBanner: false,
       // darkTheme: ThemeData(primaryColor: Colors.blueAccent), {{Cant use if the material app is const}}
        color: Colors.indigo,
-         home: Myhome(),
+         home: Mytohome(),
      );
   }
 
 }
 
-class Myhome extends StatelessWidget{
-  const Myhome({super.key});
+class Mytohome extends StatelessWidget{
+
+
   MySnackBar(message,context){
     return ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text(message),
@@ -34,126 +35,62 @@ class Myhome extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
      return Scaffold(
-        endDrawer: Drawer(
-          child: ListView(
-            children: [
-              DrawerHeader(child: Text("it is end drawer")),
-
-              ListTile(
-                title: Text("if there's already then no icon added for drawer. "),
-
-              )
-            ],
-
-          ),
+        appBar: AppBar(
+          title: Text("wondering why"),
         ),
-
-       appBar: AppBar(
-         title: Text("Drawer, end drawer,"),
-       ),
-       bottomNavigationBar: BottomNavigationBar(
-         currentIndex: 0,
-         items: [
-         BottomNavigationBarItem(icon: Icon(Icons.access_time_rounded),label: "home"),
-         BottomNavigationBarItem(icon: Icon(Icons.accessibility_new_rounded),label: "sweet home"),
-         BottomNavigationBarItem(icon: Icon(Icons.add),label: "add"),
-
-       ],
-         onTap: (int index){
-            if(index==0){
-              MySnackBar("tik ase sob? ", context);
-
-           }
-            if(index==1){
-              MySnackBar("yess", context);
-            }
-
-            if(index==2){
-              MySnackBar("Alhamdullilah", context);
-            }
-
-         },
-         
-       ),
-       drawer: Drawer(
-         child: ListView(
+       body: Center(
+         child: Column(
+           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
            children: [
-             DrawerHeader(
-               padding: EdgeInsets.all(0),
-                 child: UserAccountsDrawerHeader(
-               decoration: BoxDecoration(
-                 color: Colors.orange,
+
+             ElevatedButton(onPressed: (){
+               MySnackBar("elevatred button", context);
+             }, child: Text("I "),
+               style: ElevatedButton.styleFrom(
+                 backgroundColor: Colors.grey,
+                 shadowColor: Colors.cyanAccent,
+                 shape: RoundedRectangleBorder(
+                   borderRadius: BorderRadius.circular(10)
+                 )
                ),
-               accountEmail: Text("abc@gamil.com"),
-               accountName: Text("nuah"),
-                   currentAccountPicture: ClipOval(
-                       child: Image.network("https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=869&q=80",
-                       width: 80,
-                       height: 80,
-                       fit: BoxFit.cover),
-
-                   ),
-
-             )
              ),
 
-             ListTile(
-                 leading: Icon(Icons.home),
-               title: Text("contant"),
-               onTap: (){MySnackBar("its happing", context);}),
-             ListTile(
-                 leading: Icon(Icons.phone_in_talk),
-                 title: Text("profile"),
-                 onTap: (){MySnackBar("its happing", context);}
+             
+             TextButton(onPressed: (){MySnackBar("Text button", context);},
+                 child: Text("me"),
+               style: TextButton.styleFrom(
+                 backgroundColor: Colors.lightGreenAccent,
+                 shape:CircleBorder(),
+                 padding: EdgeInsets.all(5),
+                 foregroundColor: Colors.purple,
+                 )
+               ),
 
-     ),
-             ListTile(
-               leading: Icon(Icons.mail_lock_rounded),
-               title: Text("email"),
-                 onTap: (){MySnackBar("its happing", context);},
-     ),
-             ListTile(
-             leading: Icon(Icons.ads_click_sharp),
-               title: Text("phone"),
-    onTap: (){MySnackBar("its happing", context);},
-    ),
-             ListTile(
-               leading: Icon(Icons.volunteer_activism_rounded),
-               title: Text("yop"),
-                 onTap: (){MySnackBar("its happing", context);}),
+             OutlinedButton(onPressed: (){
+               MySnackBar("Outlined button", context);
+             }, child: Text("myself"),
+               style: OutlinedButton.styleFrom(
+                 backgroundColor: Colors.white,
+                 shape: RoundedRectangleBorder(
+                   borderRadius: BorderRadius.all(Radius.elliptical(10, 20))
+                 )
+               ),
+             ),
+             
+             IconButton(onPressed: (){
+               MySnackBar("Icon button", context);
+             },
+               icon: Icon(Icons.handshake_outlined),
+               style: IconButton.styleFrom(
+                 shape: RoundedRectangleBorder(
+                   borderRadius: BorderRadius.all(Radius.circular(20))
+                 )
+               ),
+             ),
 
            ],
-
-
          ),
-       ),
-
-       body: Container(
-         width: 200,
-         height: 200,
-         alignment: Alignment.center,
-
-         margin: EdgeInsets.all(10),
-         padding: EdgeInsets.all(10),
-         decoration: BoxDecoration(
-           color: Colors.pink,
-           border: Border.all(color: Colors.black),
-
-         ),
-         child: Row(
-           mainAxisAlignment: MainAxisAlignment.spaceAround,
-           children: [
-             Column(
-               children: [
-                 Text("it's okay not to be okay")
-               ],
-             )
-           ],
-
-         ),
-       ),
-
-
+       ) ,
      );
   }
 
