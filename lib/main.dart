@@ -32,6 +32,27 @@ class Mytohome extends StatelessWidget{
     );
   }
 
+  MyAlertDialog(context){
+    return showDialog(context: context,
+        builder: (BuildContext context){
+          return Expanded(child: AlertDialog(
+            title:Text("Alert !"),
+            content: Text("do you really want to delete "),
+            actions: [
+              TextButton(onPressed: (){
+
+                MySnackBar("deleted", context);
+                Navigator.of(context).pop();
+                },
+                child: Text("Yes"),),
+          TextButton(onPressed: (){Navigator.of(context).pop();}, child: Text("No"))
+
+
+          ],
+          ));
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
      return Scaffold(
@@ -40,57 +61,54 @@ class Mytohome extends StatelessWidget{
         ),
        body: Center(
          child: Column(
-           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+           mainAxisAlignment: MainAxisAlignment.start,
            children: [
 
-             ElevatedButton(onPressed: (){
-               MySnackBar("elevatred button", context);
-             }, child: Text("I "),
-               style: ElevatedButton.styleFrom(
-                 backgroundColor: Colors.grey,
-                 shadowColor: Colors.cyanAccent,
-                 shape: RoundedRectangleBorder(
-                   borderRadius: BorderRadius.circular(10)
-                 )
-               ),
-             ),
+             Padding(padding: EdgeInsets.all(20),
+               child:
+                 TextField(
+                   decoration: InputDecoration(
+                     labelText: 'FIRST NAME ',
+                     border: OutlineInputBorder()
+                   ),
+                 ),
 
-             
-             TextButton(onPressed: (){MySnackBar("Text button", context);},
-                 child: Text("me"),
-               style: TextButton.styleFrom(
-                 backgroundColor: Colors.lightGreenAccent,
-                 shape:CircleBorder(),
-                 padding: EdgeInsets.all(5),
-                 foregroundColor: Colors.purple,
-                 )
+             ),
+             Padding(padding: EdgeInsets.all(20),
+               child:
+               TextField(
+                 decoration: InputDecoration(
+                     labelText: 'LAST NAME ',
+                     border: OutlineInputBorder()
+                 ),
                ),
 
-             OutlinedButton(onPressed: (){
-               MySnackBar("Outlined button", context);
-             }, child: Text("myself"),
-               style: OutlinedButton.styleFrom(
-                 backgroundColor: Colors.white,
-                 shape: RoundedRectangleBorder(
-                   borderRadius: BorderRadius.all(Radius.elliptical(10, 20))
-                 )
-               ),
              ),
-             
-             IconButton(onPressed: (){
-               MySnackBar("Icon button", context);
-             },
-               icon: Icon(Icons.handshake_outlined),
-               style: IconButton.styleFrom(
-                 shape: RoundedRectangleBorder(
-                   borderRadius: BorderRadius.all(Radius.circular(20))
-                 )
+             Padding(padding: EdgeInsets.all(20),
+               child:
+               TextField(
+                 decoration: InputDecoration(
+                     labelText: 'EMAIL ',
+                     border: OutlineInputBorder()
+                 ),
                ),
+
              ),
 
+
+             Padding(
+               padding:  EdgeInsets.all(20),
+               child: ElevatedButton(onPressed: (){MyAlertDialog(context);},
+                   child: Text("click me"),
+                 style: ElevatedButton.styleFrom(
+                   backgroundColor: Colors.lightGreenAccent,
+                   maximumSize: Size(double.infinity, 60)
+                 ),
+               ),
+             )
            ],
          ),
-       ) ,
+       )
      );
   }
 
