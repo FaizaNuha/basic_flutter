@@ -63,7 +63,7 @@ class Mytohome extends StatelessWidget{
                      children: [
                        Divider(),
                        Image.network(Myitems[index]['img']!,fit: BoxFit.fill,),
-                       Text("omg"),
+                       Text("omg look "),
 
                      ],
                    ),
