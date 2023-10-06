@@ -45,7 +45,11 @@ class Mytohome extends StatelessWidget{
           title: Text("wondering why"),
         ),
 
-       body: ListView.builder(
+       body: GridView.builder(
+         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+           crossAxisSpacing: 2
+         ),
           itemCount: Myitems.length,
            itemBuilder: (context,index){
             return GestureDetector(
