@@ -22,9 +22,14 @@ class Myapp extends StatelessWidget{
 }
 
 class Mytohome extends StatelessWidget{
+  final  Myitems =[
+    {'img':'https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=869&q=80','title':'sunnor'},
+    {'img':'https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=869&q=80','title':'sunnor'},
+    {'img':'https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=869&q=80','title':'sunnor'},
+    {'img':'https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=869&q=80','title':'sunnor'},
+];
 
-
-  MySnackBar(message,context){
+    MySnackBar(message,context){
     return ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text(message),
         duration: Duration(seconds: 3) ,
@@ -32,26 +37,6 @@ class Mytohome extends StatelessWidget{
     );
   }
 
-  MyAlertDialog(context){
-    return showDialog(context: context,
-        builder: (BuildContext context){
-          return Expanded(child: AlertDialog(
-            title:Text("Alert !"),
-            content: Text("do you really want to delete "),
-            actions: [
-              TextButton(onPressed: (){
-
-                MySnackBar("deleted", context);
-                Navigator.of(context).pop();
-                },
-                child: Text("Yes"),),
-          TextButton(onPressed: (){Navigator.of(context).pop();}, child: Text("No"))
-
-
-          ],
-          ));
-        });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,57 +44,33 @@ class Mytohome extends StatelessWidget{
         appBar: AppBar(
           title: Text("wondering why"),
         ),
-       body: Center(
-         child: Column(
-           mainAxisAlignment: MainAxisAlignment.start,
-           children: [
 
-             Padding(padding: EdgeInsets.all(20),
-               child:
-                 TextField(
-                   decoration: InputDecoration(
-                     labelText: 'FIRST NAME ',
-                     border: OutlineInputBorder()
-                   ),
-                 ),
-
-             ),
-             Padding(padding: EdgeInsets.all(20),
-               child:
-               TextField(
-                 decoration: InputDecoration(
-                     labelText: 'LAST NAME ',
-                     border: OutlineInputBorder()
-                 ),
-               ),
-
-             ),
-             Padding(padding: EdgeInsets.all(20),
-               child:
-               TextField(
-                 decoration: InputDecoration(
-                     labelText: 'EMAIL ',
-                     border: OutlineInputBorder()
+       body: ListView.builder(
+          itemCount: Myitems.length,
+           itemBuilder: (context,index){
+            return GestureDetector(
+              onTap: (){
+                MySnackBar(Myitems[index]['title '], context);
+              },
+               child: Container(
+                 margin: EdgeInsets.all(10),
+                 width: double.infinity,
+                 height: 270,
+                 child: Column(
+                   children: [
+                     Image.network(Myitems[index]['img']!, fit: BoxFit.fill,),
+                     SizedBox(
+                       height: 20,
+                     ),
+                     Text(Myitems[index]['title']!),
+                   ],
                  ),
                ),
-
-             ),
-
-
-             Padding(
-               padding:  EdgeInsets.all(20),
-               child: ElevatedButton(onPressed: (){MyAlertDialog(context);},
-                   child: Text("click me"),
-                 style: ElevatedButton.styleFrom(
-                   backgroundColor: Colors.lightGreenAccent,
-                   maximumSize: Size(double.infinity, 60)
-                 ),
-               ),
-             )
-           ],
-         ),
-       )
+            );
+           }
+       ),
      );
+
   }
 
  }
