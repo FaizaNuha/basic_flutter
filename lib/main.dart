@@ -45,32 +45,42 @@ class Mytohome extends StatelessWidget{
           title: Text("wondering why"),
         ),
 
-       body: ListView.builder(
-          itemCount: Myitems.length,
-           itemBuilder: (context,index){
-            return GestureDetector(
-              onTap: (){
-                MySnackBar(Myitems[index]['title '], context);
-              },
-               child: Container(
-                 margin: EdgeInsets.all(10),
-                 width: double.infinity,
-                 height: 270,
-                 child: Column(
-                   children: [
-                     Image.network(Myitems[index]['img']!, fit: BoxFit.fill,),
-                     SizedBox(
-                       height: 20,
-                     ),
-                     Text(Myitems[index]['title']!),
-                   ],
+       body: Scrollbar(
+         thickness: 20,
+         radius: Radius.circular(10),
+         child: ListView.builder(
+             itemCount: Myitems.length,
+             itemBuilder: (context,index){
+               return GestureDetector(
+                 onTap: (){
+                   MySnackBar("goodbye", context);
+                 },
+                 child: Container(
+                   margin: EdgeInsets.all(5),
+                   width: double.infinity,
+                   height: 300,
+                   child: Column(
+                     children: [
+                       Divider(),
+                       Image.network(Myitems[index]['img']!,fit: BoxFit.fill,),
+                       Text("omg"),
+
+                     ],
+                   ),
                  ),
-               ),
-            );
-           }
-       ),
+               );
+             }
+         ),
+       )
      );
 
   }
 
  }
+ // work for separator
+// separator space a o add kora jay
+ //ListView.separated(
+//   separatorBuilder(context,index){
+        //return Divider()
+//}
+//   )
